@@ -6,16 +6,27 @@ const { use } = require('../app');
 const { Schema } = mongoose;
 
 const userSchema = new Schema({
+    fullName:{
+        type:String,
+        required:true
+    },
     email:{
         type:String,
         lowercase:true,
         unique:true,
         required: true,
-        
     },
     password:{
         type:String,
         required: true
+    },
+    contact:{
+        type:String,
+        require:true
+    },
+    address:{
+        type:String,
+        require:true
     }
 });
 

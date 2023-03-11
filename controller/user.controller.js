@@ -4,9 +4,9 @@ const UserModel = require('../model/user.model');
 
 exports.register = async(req,res)=>{
     try{
-        const {email,password} = req.body;
+        const {fullName,email,password,contact,address} = req.body;
 
-        const successRes = await UserService.registerUser(email,password);
+        const successRes = await UserService.registerUser(fullName,email,password,contact,address);
 
         // res.json({status:true,success: "User Registered Successfully"});
         res.status(200).json({status:true,success: "User Registered Successfully"});
@@ -38,6 +38,17 @@ exports.login = async(req,res)=>{
 
        res.status(200).json({status:true,token:token});
     }catch(e){
+        res.status(400).json({status:false,success: "Bad Request"});
+    }
+}
+
+exports.getUserDetails = async(req,res) => {
+    try{
+        const {userId} = req.body;
+        let successGetUserDetails = await UserService.getUserDetails(userId);
+        res.status(200).json({status:true,success: successGetUserDetails});
+    }catch(e){
+        console.log(e);
         res.status(400).json({status:false,success: "Bad Request"});
     }
 }

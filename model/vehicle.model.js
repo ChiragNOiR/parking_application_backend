@@ -28,7 +28,8 @@ const vehicleSchema = new Schema({
     },
     licenseNumber:{
         type:String,
-        required: true
+        required: true,
+        unique:true
     },
     stateOfRegistration:{
         type:String,
