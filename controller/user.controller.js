@@ -52,3 +52,21 @@ exports.getUserDetails = async(req,res) => {
         res.status(400).json({status:false,success: "Bad Request"});
     }
 }
+
+
+exports.tokenIsValid =  async (req, res) => {
+    try {
+      const token = req.header("x-auth-token");
+      if (!token) return res.json(false);
+      const isVerified = jwt.verify(token, "secretKey");
+      if (!isVerified) return res.json(false);
+  
+      const user = await User.findById(isVerified.id);
+      if (!user) return res.json(false);
+      res.json(true);
+    } catch (e) {
+      res.status(500).json({ error: e.message });
+    }
+  }
+  
+
