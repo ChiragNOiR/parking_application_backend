@@ -17,18 +17,7 @@ class UserService{
             throw e;
         }
     }
-    static async getUserDetails(userId){
-        try{
-            const userData = await UserModel.find({userId});
-            return userData;
-        }catch(e){
-            throw e;
-        }
-    }
-
-    static async generateToken(tokenData,secretKey,jwt_expire){
-        return jwt.sign(tokenData,secretKey,{expiresIn:jwt_expire});
-    }
+    
 }
 
 module.exports = UserService;

@@ -1,7 +1,8 @@
 const { response } = require('../app');
 const UserService = require('../services/user.services');
 const UserModel = require('../model/user.model');
-
+const auth = require('../middleware/auth');
+const jwt = require('jsonwebtoken');
 exports.register = async(req,res)=>{
     try{
         const {fullName,email,password,contact,address} = req.body;
@@ -17,40 +18,34 @@ exports.register = async(req,res)=>{
     }
 }
 
-exports.login = async(req,res)=>{
-    try{
-        console.log('test');
-        const {email,password} = req.body;
-        
-       const user = await UserService.checkUser(email);
-
-       if(!user){
-        throw new Error('User doesn\'t exist');
-       }
-
-       const isMatch = await user.comparePassword(password);
-       if(isMatch == false){
-        throw new Error('Invalid Password!!');
-       }
-
-       let tokenData = {_id:user._id, email:user.email};
-       const token = await UserService.generateToken(tokenData,"secretKey",'1h')
-
-       res.status(200).json({status:true,token:token});
-    }catch(e){
-        res.status(400).json({status:false,success: "Bad Request"});
+exports.login = async (req, res) => {
+    try {
+      const { email, password } = req.body;
+  
+    //   const user = await UserService.checkUser(email);
+    const user = await UserModel.findOne({email});
+  
+      if (!user) {
+        return res.status(400).json({ status: false, error: 'User does not exist' });
+      }
+  
+      const isMatch = await user.comparePassword(password);
+      if (isMatch === false) {
+        return res.status(400).json({ status: false, error: 'Invalid password' });
+      }
+  
+      const token = jwt.sign({ id: user._id }, 'passwordKey');
+      res.json({token, ...user._doc});
+    } catch (error) {
+      console.log(error);
+      res.status(400).json({ status: false, error: 'Bad Request' });
     }
-}
+  };
 
-exports.getUserDetails = async(req,res) => {
-    try{
-        const {userId} = req.body;
-        let successGetUserDetails = await UserService.getUserDetails(userId);
-        res.status(200).json({status:true,success: successGetUserDetails});
-    }catch(e){
-        console.log(e);
-        res.status(400).json({status:false,success: "Bad Request"});
-    }
+
+exports.getUserData = async (req, res) => {
+    const user = await UserModel.findById(req.user);
+    res.json({ ...user._doc, token: req.token});
 }
 
 
@@ -58,10 +53,10 @@ exports.tokenIsValid =  async (req, res) => {
     try {
       const token = req.header("x-auth-token");
       if (!token) return res.json(false);
-      const isVerified = jwt.verify(token, "secretKey");
+      const isVerified = jwt.verify(token, "passwordKey");
       if (!isVerified) return res.json(false);
   
-      const user = await User.findById(isVerified.id);
+      const user = await UserModel.findById(isVerified.id);
       if (!user) return res.json(false);
       res.json(true);
     } catch (e) {
