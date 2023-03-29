@@ -27,7 +27,12 @@ const userSchema = new Schema({
     address:{
         type:String,
         require:true
-    }
+    },
+    role:{
+        type:String,
+        require:true,
+        enum: ['admin', 'user']
+    },
 });
 
 

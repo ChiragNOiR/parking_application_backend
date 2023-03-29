@@ -35,6 +35,7 @@ const reservationSchema = new Schema({
         type:Date,
         required: true
     },
+    
 });
 
 const ReservationModel = db.model('reservation', reservationSchema);

@@ -5,9 +5,9 @@ const auth = require('../middleware/auth');
 const jwt = require('jsonwebtoken');
 exports.register = async(req,res)=>{
     try{
-        const {fullName,email,password,contact,address} = req.body;
+        const {fullName,email,password,contact,address,role} = req.body;
 
-        const successRes = await UserService.registerUser(fullName,email,password,contact,address);
+        const successRes = await UserService.registerUser(fullName,email,password,contact,address,role);
 
         // res.json({status:true,success: "User Registered Successfully"});
         res.status(200).json({status:true,success: "User Registered Successfully"});
