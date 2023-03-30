@@ -1,10 +1,16 @@
 const ParkingDetailModel = require('../model/parking.model');
 const jwt = require('jsonwebtoken');
+const cloudinary = require('cloudinary').v2;
+cloudinary.config({
+    cloud_name: "dhqrq8v9p",
+    api_key: "552414298378641",
+    api_secret: "lZayo9qCKZuhuVWiPSk8-6x885s"
+  });
 
 class ParkingService {
-    static async createParkingDetail(userId,title,description,distance,area,slots){
+    static async createParkingDetail(title,description,distance,area,slots,image){
         try{
-            const createParkingDetail = new ParkingDetailModel({userId,title,description,distance,area,slots});
+            const createParkingDetail = new ParkingDetailModel({title,description,distance,area,slots,image});
             return await createParkingDetail.save();
         }catch(e){
             
@@ -23,11 +29,44 @@ class ParkingService {
         try {
             const areas = await ParkingDetailModel.find({area: "temple"});
             return areas;
-            // res.status(200).json(areas);
+            
         } catch (error) {
             console.log(error);
         }
     }
+
+    static async getSchoolList(){
+        try {
+            const areas = await ParkingDetailModel.find({area: "school"});
+            return areas;
+            
+        } catch (error) {
+            console.log(error);
+        }
+    }
+    static async getMallList(){
+        try {
+            const areas = await ParkingDetailModel.find({area: "mall"});
+            return areas;
+            
+        } catch (error) {
+            console.log(error);
+        }
+    }
+    static async getTrekList(){
+        try {
+            const areas = await ParkingDetailModel.find({area: "trek"});
+            return areas;
+            
+        } catch (error) {
+            console.log(error);
+        }
+    }
+    // static async postImage(){
+    //     console.log(req.body);
+    //     const file = req.files.image;
+    //     cloudinary.uploader.upload(file.temp)
+    // }
     
 }
 module.exports = ParkingService;
