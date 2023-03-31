@@ -33,6 +33,9 @@ const userSchema = new Schema({
         require:true,
         enum: ['admin', 'user']
     },
+    profile:{
+        type: String,
+    }
 });
 
 

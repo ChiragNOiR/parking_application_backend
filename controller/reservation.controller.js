@@ -5,9 +5,9 @@ const jwt = require('jsonwebtoken');
 
 exports.reservation = async(req,res)=>{
     try {
-        const {userId,fullName,company,contact,location,startTime,endTime} = req.body;
+        const {fullName,company,contact,location,startTime,endTime,price,address} = req.body;
 
-        const successReserve = await ReservationService.reserveSpace(userId,fullName,company,contact,location,startTime,endTime);
+        const successReserve = await ReservationService.reserveSpace(fullName,company,contact,location,startTime,endTime,price,address);
 
         res.status(200).json({status:true,success: "Location Reserved Successfully"});
     } catch (error) {

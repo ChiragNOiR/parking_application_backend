@@ -7,4 +7,5 @@ router.post('/registration', UserController.register);
 router.post('/login', UserController.login);
 router.get('/', auth, UserController.getUserData);
 router.post('/tokenIsValid', UserController.tokenIsValid);
+router.post('/uploadProfile', UserController.uploadProfile);
 module.exports = router;

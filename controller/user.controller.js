@@ -7,7 +7,7 @@ exports.register = async(req,res)=>{
     try{
         const {fullName,email,password,contact,address,role} = req.body;
 
-        const successRes = await UserService.registerUser(fullName,email,password,contact,address,role);
+        const successRes = await UserService.registerUser(fullName,email,password,contact,address);
 
         // res.json({status:true,success: "User Registered Successfully"});
         res.status(200).json({status:true,success: "User Registered Successfully"});
@@ -63,5 +63,16 @@ exports.tokenIsValid =  async (req, res) => {
       res.status(500).json({ error: e.message });
     }
   }
+
+exports.uploadProfile = async(req, res)=>{
+  try {
+    const { email, profile } = req.body;
+  
+    const user = await UserModel.findOneAndUpdate({email},{profile},{new: true, runValidators: true});
+    res.status(200).json({ status: true, success: user });
+  } catch (e) {
+    res.status(500).json({ error: e.message });
+  }
+}
   
 

@@ -8,9 +8,9 @@ cloudinary.config({
   });
 
 class ParkingService {
-    static async createParkingDetail(title,description,distance,area,slots,image){
+    static async createParkingDetail(title,description,distance,area,slots,image,price){
         try{
-            const createParkingDetail = new ParkingDetailModel({title,description,distance,area,slots,image});
+            const createParkingDetail = new ParkingDetailModel({title,description,distance,area,slots,image,price});
             return await createParkingDetail.save();
         }catch(e){
             
@@ -62,6 +62,13 @@ class ParkingService {
             console.log(error);
         }
     }
+    // static async uploadProfile(){
+    //     try {
+    //         const profile = await ParkingDetailModel.findOne({})
+    //     } catch (error) {
+            
+    //     }
+    // }
     // static async postImage(){
     //     console.log(req.body);
     //     const file = req.files.image;
