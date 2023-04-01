@@ -11,7 +11,7 @@ app.use(express.json());
 app.use(fileUpload({
     useTempFiles: true
 }))
-// app.use(body_parser.json());
+app.use(body_parser.json());
 app.use('/', userRouter);
 app.use('/', parkingRouter);
 app.use('/',vehicleRouter);

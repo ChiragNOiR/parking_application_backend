@@ -6,13 +6,9 @@ const { use } = require('../app');
 const { Schema } = mongoose;
 
 const vehicleSchema = new Schema({
-    userId:{
-        type: Schema.Types.ObjectId,
-        ref:UserModel.modelName
-    },
+    
     company:{
         type:String,
-        required: true,
     },
     model:{
         type:String,
