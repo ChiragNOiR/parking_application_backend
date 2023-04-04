@@ -98,3 +98,15 @@ exports.postImage = async(req,res)=>{
         console.log('error');
     }
 }
+
+
+exports.searchAPI = async (req, res) => {
+
+    let data = await ParkingDetailModel.find({
+        "$or": [
+            {'title':{$regex: new RegExp(req.params.key, "i")}},
+        ]
+    })
+    res.status(200).json({status:true,success: data});
+    
+}

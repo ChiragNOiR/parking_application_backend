@@ -11,14 +11,7 @@ class VehicleService{
             throw error;
         }
     }
-    static async getVehicleDetail(){
-        try {
-            const vehicleData = await vehicleDetailModel.findById(id);
-            return vehicleData;
-        } catch (error) {
-            throw error;
-        }
-    }
+    
 
     static async getVehicleByUserId(userId){
         const vehicles = await VehicleModel.find({ userId });

@@ -9,4 +9,6 @@ router.get('/getMallList',ParkingDetailController.getMallList);
 router.get('/getTrekList',ParkingDetailController.getTrekList);
 router.post('/postImage', ParkingDetailController.postImage);
 
+router.get('/search/:key', ParkingDetailController.searchAPI);
+
 module.exports = router;

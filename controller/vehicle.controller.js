@@ -2,7 +2,7 @@ const { response } = require('../app');
 const VehicleService = require('../services/vehicle.services');
 const jwt = require('jsonwebtoken');
 const vehicleDetailModel = require('../model/vehicle.model');
-const UserModel = require('../model/user.model')
+const UserModel = require('../model/user.model');
 
 exports.createVehicleDetail = async(req,res)=>{
     try{

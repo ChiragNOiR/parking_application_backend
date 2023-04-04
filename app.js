@@ -4,7 +4,8 @@ const userRouter = require('./routers/user.router');
 const parkingRouter = require('./routers/parking.router');
 const vehicleRouter = require('./routers/vehicle.router');
 const reservationRouter = require('./routers/reservation.router');
-const fileUpload = require('express-fileupload')
+const fileUpload = require('express-fileupload');
+const kycRouter = require('./routers/kyc.router');
 
 const app = express();
 app.use(express.json());
@@ -16,5 +17,6 @@ app.use('/', userRouter);
 app.use('/', parkingRouter);
 app.use('/',vehicleRouter);
 app.use('/',reservationRouter);
+app.use('/',kycRouter);
 
 module.exports = app;
