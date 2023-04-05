@@ -4,5 +4,6 @@ const KycDetailController = require('../controller/kyc.controller');
 router.post('/createKycDetail', KycDetailController.createKycDetails);
 router.get('/getKYC', KycDetailController.getKycDetails);
 router.get('/getKycById/:userId', KycDetailController.getKycById);
+router.post('/kycStatus/:userId/:status', KycDetailController.changeKycStatus);
 
 module.exports = router;

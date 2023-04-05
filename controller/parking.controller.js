@@ -10,8 +10,8 @@ cloudinary.config({
 
 exports.createParkingDetail = async(req,res) => {
     try{
-        const {title,description,distance,area,slots,image,price} = req.body;
-        let successCreateParkingDetail = await ParkingService.createParkingDetail(title,description,distance,area,slots,image,price);
+        const {des,cover,title,description,distance,area,slots,image,price} = req.body;
+        let successCreateParkingDetail = await ParkingService.createParkingDetail(des,cover,title,description,distance,area,slots,image,price);
         
         res.status(200).json({status:true,success: successCreateParkingDetail});
     }catch(e){

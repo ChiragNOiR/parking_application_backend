@@ -8,9 +8,9 @@ cloudinary.config({
   });
 
 class ParkingService {
-    static async createParkingDetail(title,description,distance,area,slots,image,price){
+    static async createParkingDetail(des,cover,title,description,distance,area,slots,image,price){
         try{
-            const createParkingDetail = new ParkingDetailModel({title,description,distance,area,slots,image,price});
+            const createParkingDetail = new ParkingDetailModel({des,cover,title,description,distance,area,slots,image,price});
             return await createParkingDetail.save();
         }catch(e){
             

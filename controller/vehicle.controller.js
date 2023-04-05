@@ -39,7 +39,7 @@ exports.getVehicleData = async(req,res)=>{
         console.log(`user: ${user}`);
 
         if(!user) {
-            return res.status(404).json({status:false, success: "User not found"});
+            return res.status(404).json({status:false, success: "vehicle not found"});
         }
 
         const userVehicle = await VehicleService.getVehicleByUserId(userId);

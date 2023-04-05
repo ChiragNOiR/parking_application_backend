@@ -7,7 +7,9 @@ const VehicleDetailModel = require('../model/vehicle.model');
 const { Schema } = mongoose;
 
 const reservationSchema = new Schema({
-    
+    userId:{
+        type: String,
+    },
     fullName:{
         type: String,
     },
