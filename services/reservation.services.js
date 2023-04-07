@@ -1,9 +1,9 @@
 const ReservationModel = require('../model/reservation.model');
 const jwt = require('jsonwebtoken')
 class ReservationService{
-    static async reserveSpace(userId,fullName,contact,location,startTime,endTime,price,address){
+    static async reserveSpace(userId,fullName,contact,location,startTime,endTime,price,date){
         try{
-            const createReservation = new ReservationModel({userId,fullName,contact,location,startTime,endTime,price,address});
+            const createReservation = new ReservationModel({userId,fullName,contact,location,startTime,endTime,price,date});
             return await createReservation.save();
         }catch(e){
             console.log(e);

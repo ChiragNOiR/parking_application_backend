@@ -13,10 +13,7 @@ const reservationSchema = new Schema({
     fullName:{
         type: String,
     },
-    address:{
-        type: String
-    },
-    company:{
+    date:{
         type: String,
     },
     contact:{

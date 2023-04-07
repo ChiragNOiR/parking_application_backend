@@ -6,9 +6,9 @@ const UserModel = require('../model/user.model');
 
 exports.reservation = async(req,res)=>{
     try {
-        const {userId,fullName,contact,location,startTime,endTime,price,address} = req.body;
+        const {userId,fullName,contact,location,startTime,endTime,price,date} = req.body;
 
-        const successReserve = await ReservationService.reserveSpace(userId,fullName,contact,location,startTime,endTime,price,address);
+        const successReserve = await ReservationService.reserveSpace(userId,fullName,contact,location,startTime,endTime,price,date);
 
         console.log(req.body);
 
