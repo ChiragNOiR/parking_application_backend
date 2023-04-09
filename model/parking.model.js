@@ -16,11 +16,13 @@ const parkingDetailSchema = new Schema({
     description: { type: String, required: true },
     distance: { type: String },
     slots:{type: String, required: true},
-    area: {type: String, required: true, enum: ['temple', 'school', 'mall', 'trek']},
+    area: {type: String, required: true, enum: ['temple', 'school', 'mall', 'trek', 'random']},
     image:{type: String, required: true},
     price:{type: String, required: true},
     cover:{type: String},
     des:{type: String},
+    lat:{type:String},
+    long:{type:String}
 });
 
 const ParkingDetailModel = db.model('parkingDetail', parkingDetailSchema);

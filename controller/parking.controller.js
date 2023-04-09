@@ -10,8 +10,8 @@ cloudinary.config({
 
 exports.createParkingDetail = async(req,res) => {
     try{
-        const {des,cover,title,description,distance,area,slots,image,price} = req.body;
-        let successCreateParkingDetail = await ParkingService.createParkingDetail(des,cover,title,description,distance,area,slots,image,price);
+        const {des,cover,title,description,distance,area,slots,image,price,lat,long} = req.body;
+        let successCreateParkingDetail = await ParkingService.createParkingDetail(des,cover,title,description,distance,area,slots,image,price,lat,long);
         
         res.status(200).json({status:true,success: successCreateParkingDetail});
     }catch(e){
@@ -65,6 +65,16 @@ exports.getMallList = async(req, res) => {
 exports.getTrekList = async(req, res) => {
     try {
         const areas = await ParkingService.getTrekList();
+        res.status(200).json(areas);
+    } catch (error) {
+        console.log(error);
+        res.status(400).json({status:false,success: "Bad Request"});
+    }
+}
+
+exports.getRandomList = async(req, res) => {
+    try {
+        const areas = await ParkingService.getRandom();
         res.status(200).json(areas);
     } catch (error) {
         console.log(error);

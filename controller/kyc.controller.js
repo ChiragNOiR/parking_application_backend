@@ -57,3 +57,14 @@ exports.getKycById = async(req,res)=>{
         res.status(400).json({status:false,success: "Bad Request"});
     }
 }
+
+exports.uploadLicense = async(req, res) => {
+    try {
+        const {contact, licensePhoto} = req.body;
+
+        const lic = await KYCModel.findOneAndUpdate({contact},{licensePhoto},{new: true, runValidators: true});
+        res.status(200).json({ status: true, success: lic });
+    } catch (error) {
+        res.status(500).json({ error: e.message });
+    }
+}

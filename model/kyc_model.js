@@ -37,7 +37,8 @@ const kycSchema = new Schema({
         enum: ['A', 'B', 'C', 'C1', 'D', 'E', 'F', 'G', 'H', 'H1', 'H2','I','I1','I2','I3','J1', 'J2', 'J3', 'J4', 'J5', 'K' ]
     },
     contact:{
-        type: String
+        type: String,
+        unique: true,
     },
     dateOfIssue:{
         type: String,
@@ -50,6 +51,9 @@ const kycSchema = new Schema({
         enum:['approved', 'rejected', 'pending']
     },
     profile:{
+        type: String,
+    },
+    licensePhoto:{
         type: String,
     }
 });

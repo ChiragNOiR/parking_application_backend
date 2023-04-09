@@ -8,9 +8,9 @@ cloudinary.config({
   });
 
 class ParkingService {
-    static async createParkingDetail(des,cover,title,description,distance,area,slots,image,price){
+    static async createParkingDetail(des,cover,title,description,distance,area,slots,image,price,lat,long){
         try{
-            const createParkingDetail = new ParkingDetailModel({des,cover,title,description,distance,area,slots,image,price});
+            const createParkingDetail = new ParkingDetailModel({des,cover,title,description,distance,area,slots,image,price,lat,long});
             return await createParkingDetail.save();
         }catch(e){
             
@@ -56,6 +56,16 @@ class ParkingService {
     static async getTrekList(){
         try {
             const areas = await ParkingDetailModel.find({area: "trek"});
+            return areas;
+            
+        } catch (error) {
+            console.log(error);
+        }
+    }
+
+    static async getRandom(){
+        try {
+            const areas = await ParkingDetailModel.find({area: "random"});
             return areas;
             
         } catch (error) {
