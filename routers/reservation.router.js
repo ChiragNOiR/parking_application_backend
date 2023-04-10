@@ -5,4 +5,6 @@ router.post('/reservation', ReservationController.reservation);
 
 router.get('/getReservation/:userId', ReservationController.getReservation)
 
+router.post('/cancelRes/:userId/:status', ReservationController.cancelRes);
+
 module.exports = router;

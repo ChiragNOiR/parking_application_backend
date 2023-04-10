@@ -6,9 +6,9 @@ const UserModel = require('../model/user.model');
 
 exports.reservation = async(req,res)=>{
     try {
-        const {userId,fullName,contact,location,startTime,endTime,price,date} = req.body;
+        const {userId,fullName,contact,location,startTime,endTime,price,date,status} = req.body;
 
-        const successReserve = await ReservationService.reserveSpace(userId,fullName,contact,location,startTime,endTime,price,date);
+        const successReserve = await ReservationService.reserveSpace(userId,fullName,contact,location,startTime,endTime,price,date,status);
 
         console.log(req.body);
 
@@ -37,5 +37,18 @@ exports.getReservation = async(req, res) => {
     } catch (error) {
         console.log(error);
         res.status(400).json({status:false,success: "Bad Request"});
+    }
+}
+
+exports.cancelRes = async(req,res) => {
+    try {
+        const {location, status} = req.body;
+
+        const cancelRes = await ReservationModel.findOneAndUpdate({location},{status}, {new: false, runValidators: true});
+    res.status(200).json({ status: true, success: cancelRes });
+
+    } catch (error) {
+    res.status(500).json({ error: e.message });
+        
     }
 }

@@ -15,14 +15,17 @@ exports.createKycDetails = async(req, res)=>{
 }
 
 exports.changeKycStatus = async(req, res)=>{
+
+
     try {
-        const userId = req.params.userId
-        const status = req.params.status
-        const kycStatus = await KYCModel.findOneAndUpdate({userId: userId},{status:status})
-        console.log(kycStatus);
-        res.status(200).json({status:true,success: kycStatus});
-    } catch (e) {
-        res.status(400).json({status:false,success: "Bad Request"});
+        const {contact, status} = req.body;
+
+        const kyc = await KYCModel.findOneAndUpdate({contact}, {status}, {new: false, runValidators: true});
+    res.status(200).json({ status: true, success: kyc });
+
+    } catch (error) {
+    res.status(500).json({ error: e.message });
+        
     }
 }
 
