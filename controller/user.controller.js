@@ -8,8 +8,7 @@ exports.register = async(req,res)=>{
         const {fullName,email,password,contact,address,role} = req.body;
 
         const successRes = await UserService.registerUser(fullName,email,password,contact,address,role);
-
-        // res.json({status:true,success: "User Registered Successfully"});
+        console.log(`User Registered Successfully \n ${JSON.stringify(successRes, null, 2)}`);
         res.status(200).json({status:true,success: "User Registered Successfully"});
     }catch(e){
         console.log(e);
@@ -22,9 +21,8 @@ exports.login = async (req, res) => {
     try {
       const { email, password } = req.body;
   
-    //   const user = await UserService.checkUser(email);
     const user = await UserModel.findOne({email});
-  
+      
       if (!user) {
         return res.status(400).json({ status: false, error: 'User does not exist' });
       }
@@ -35,6 +33,7 @@ exports.login = async (req, res) => {
       }
   
       const token = jwt.sign({ id: user._id }, 'passwordKey');
+      
       res.json({token, ...user._doc});
     } catch (error) {
       console.log(error);

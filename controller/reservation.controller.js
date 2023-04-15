@@ -10,9 +10,9 @@ exports.reservation = async(req,res)=>{
 
         const successReserve = await ReservationService.reserveSpace(userId,fullName,contact,location,startTime,endTime,price,date,status);
 
-        console.log(req.body);
+        console.log(`Space Reserved \n ${JSON.stringify(successReserve, null, 2)}`);
 
-        res.status(200).json({status:true,success: successReserve});
+        res.status(200).json({status:true,success: "Space Reserved"});
     } catch (error) {
         console.log(error);
         res.status(400).json({status:false,success: "Bad Request"});
