@@ -72,18 +72,6 @@ class ParkingService {
             console.log(error);
         }
     }
-    // static async uploadProfile(){
-    //     try {
-    //         const profile = await ParkingDetailModel.findOne({})
-    //     } catch (error) {
-            
-    //     }
-    // }
-    // static async postImage(){
-    //     console.log(req.body);
-    //     const file = req.files.image;
-    //     cloudinary.uploader.upload(file.temp)
-    // }
-    
+
 }
 module.exports = ParkingService;
