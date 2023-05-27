@@ -35,6 +35,10 @@ const userSchema = new Schema({
     },
     profile:{
         type: String,
+    },
+    token:{
+        type: String,
+        default:'',
     }
 });
 

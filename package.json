@@ -17,6 +17,11 @@
     "express-fileupload": "^1.4.0",
     "jsonwebtoken": "^9.0.0",
     "mongoose": "^6.10.0",
-    "nodemon": "^2.0.20"
+    "nodemailer": "^6.9.2",
+    "nodemon": "^2.0.20",
+    "otp-generator": "^4.0.1",
+    "random": "^4.1.0",
+    "randomstring": "^1.2.3",
+    "string": "^3.3.3"
   }
 }
